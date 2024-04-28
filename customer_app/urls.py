@@ -13,4 +13,6 @@ urlpatterns = [
     path('feedbacks',views.view_feedback,name='feedbacks'),
     path('bill-pay/<int:id>/',views.pay_bill,name='bill-pay'),
     path('direct-pay/<int:id>/',views.pay_in_direct,name='direct-pay'),
+    path('get-invoice/<int:id>/', views.get_invoice, name='get-invoice'),
+    path('view-invoice/<int:id>/', views.view_invoice, name='view-invoice'),
 ]

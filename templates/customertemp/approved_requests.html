@@ -4,6 +4,7 @@
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">Approved Requests</h3>
+        <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -43,10 +44,20 @@
                         <button class="btn btn-success">Bill Paid </button>
                         {% endif %}
                     </td>
+                    <td>
+                        {% if enq.bill_status == 1 %}
+                        <a href="{% url 'get-invoice' enq.id %}" class="btn btn-primary btn-sm">Download</a>
+                        {% elif enq.bill_status == 2 %}
+                        <a href="{% url 'get-invoice' enq.id %}" class="btn btn-primary btn-sm">Download</a>
+                        {% else %}
+                        Not Available
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 {% endblock %}

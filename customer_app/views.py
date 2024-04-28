@@ -1,9 +1,13 @@
+from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from accounts.models import *
 from customer_app.forms import *
 from customer_app.models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.template.loader import get_template
+
+from customer_app.utils import render_to_pdf
 # Create your views here.
 @login_required(login_url='sign-in')
 def customer_home(request):
@@ -88,6 +92,22 @@ def pay_in_direct(request, id):
     bi.save()
     messages.info(request, 'Choosed to Pay Fee Direct in office')
     return redirect('approved-requests')
+
+def get_invoice(request, id):
+    u = User.objects.get(username=request.user)
+    bill = Request.objects.get(id=id)
+    template = get_template('customertemp/invoice.html')
+    html = template.render({'data': bill})
+
+    pdf = render_to_pdf('customertemp/invoice.html', {'data': bill})
+
+    return HttpResponse(pdf, content_type='application/pdf')
+
+
+def view_invoice(request, id):
+    u = User.objects.get(username=request.user)
+    bill = Request.objects.filter(id=id)
+    return render(request, 'customertemp/invoice.html', {'data': bill})
 
 
 
