@@ -1,0 +1,52 @@
+{% extends 'customertemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Approved Requests</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Vehicle Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Vehicle No.</th>
+                    <th scope="col">Vehicle Model</th>
+                    <th scope="col">Vehicle Brand</th>
+                    <th scope="col">Issues</th>
+                    <th scope="col">Mechanic</th>
+                    <th>Enquiry Date</th>
+                    <th>Status</th>
+                    <th>Cost</th>
+                    <th>Pay</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enq in enquiries %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{enq.vehicle_name}}</td>
+                    <td>{{enq.category}}</td>
+                    <td>{{enq.vehicle_no}}</td>
+                    <td>{{enq.vehicle_model}}</td>
+                    <td>{{enq.vehicle_brand}}</td>
+                    <td>{{enq.problem_description}}</td>
+                    <td>{{enq.mechanic}}</td>
+                    <td>{{enq.date}}</td>
+                    <td>{{enq.status}}</td>
+                    <td>Rs.{{enq.cost}}</td>
+                    <td>
+                        {% if enq.bill_status == 0 %}
+                        <a href="{% url 'bill-pay' enq.id %}" class="btn btn-primary btn-sm">PAY NOW</a>
+                        <a href="{% url 'direct-pay' enq.id %}" class="btn btn-primary btn-sm">PAY DIRECT</a>
+                        {% else %}
+                        <button class="btn btn-success">Bill Paid </button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

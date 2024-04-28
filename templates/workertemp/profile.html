@@ -1,0 +1,21 @@
+{% extends 'workertemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    {% for i in data %}
+    <img src="{{i.profile_pic.url}}" class="card-img-top" height="200px">
+    <div class="card-body">
+        <h5 class="card-title">{{i.user.username}}</h5>
+        <p class="card-text">
+            <b>Name</b> : {{i.name}} <br>
+            <b>E-mail</b> : {{i.user.email}} <br>
+            <b>Mobile</b> : {{i.mobile_number}} <br>
+        </p>
+    </div>
+    {% endfor %}
+    <div style="display: flex; justify-content: center;">
+        <a href="{% url 'edit-profile' %}">click to Edit</a>
+    </div>
+</div>
+{% endblock %}

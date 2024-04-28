@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>CROSS ROADS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'icomoon/icomoon.css' %}">
+    <link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- script
+    ================================================== -->
+    <script src="{% static 'js/modernizr.js' %}"></script>
+  </head>
+  <body>
+
+    <div class="preloader-wrapper">
+      <div class="preloader">
+      </div>
+    </div>
+
+    <div class="search-popup">
+      <div class="search-popup-container">
+
+        <form role="search" method="get" class="search-form" action="">
+          <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
+          <button type="submit" class="search-submit"><a href="#"><i class="icon icon-search"></i></a></button>
+        </form>
+
+        <h5 class="cat-list-title">Browse Categories</h5>
+        
+        <ul class="cat-list">
+          <li class="cat-list-item">
+            <a href="shop.html" title="Men Jackets">Men Jackets</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="shop.html" title="Fashion">Fashion</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="shop.html" title="Casual Wears">Casual Wears</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="shop.html" title="Women">Women</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="shop.html" title="Trending">Trending</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="shop.html" title="Hoodie">Hoodie</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="shop.html" title="Kids">Kids</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <header id="header">
+      <div id="header-wrap">
+        <nav class="primary-nav padding-small">
+          <div class="container">
+            <div class="row d-flex align-items-center">
+              <div class="col-lg-2 col-md-2">
+                <div class="main-logo">
+                  <a href="{% url 'index' %}">
+                    <h4 style="color: chartreuse;">
+                      <i>CROSS ROADS</i>
+                    </h4>
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-10 col-md-10">
+                <div class="navbar">
+
+                  <div id="main-nav" class="stellarnav d-flex justify-content-end right">
+                    <ul class="menu-list">
+
+                      <li class="menu-item has-sub">
+                        <a href="{% url 'index' %}" class="item-anchor active d-flex align-item-center" data-effect="Home">Home</a>
+                      </li>
+
+                      <li><a href="{% url 'sign-in' %}" class="item-anchor" data-effect="Contact">Sign-in</a></li>
+
+                    </ul>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <section id="billboard" class="overflow-hidden">
+
+      <button class="button-prev">
+        <i class="icon icon-chevron-left"></i>
+      </button>
+      <button class="button-next">
+        <i class="icon icon-chevron-right"></i>
+      </button>
+      <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style="background-image: url('{% static 'images/bike-service1.jpg' %}');background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="banner-content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h2 class="banner-title" style="color: chartreuse;">Lets Go green</h2>
+                    <div class="btn-wrap">
+                      <a href="{% url 'sign-in'%}" class="btn btn-light btn-medium d-flex align-items-center" tabindex="0">HelpDesk:+91-123-4567
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide" style="background-image: url('{% static 'images/bike-service2.jpg' %}');background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <div class="banner-content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h2 class="banner-title" style="color: chartreuse;">24x7 Assistance</h2>
+                    <div class="btn-wrap">
+                      <a href="{% url 'sign-in'%}" class="btn btn-light btn-light-arrow btn-medium d-flex align-items-center" tabindex="0">HelpDesk:+91-123-4567
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div id="footer-bottom"  style="border: 2px solid whitesmoke;">
+      <div class="container">
+        <div class="d-flex align-items-center flex-wrap justify-content-between">
+          <div class="copyright">
+            <p>Developed & Distributed by <a href="https://themewagon.com">ASH&CO.</a>
+            </p>
+          </div>
+          <div class="payment-method">
+            <p><small>Rights Not Reserved!</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

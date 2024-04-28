@@ -1,0 +1,42 @@
+{% extends 'workertemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Work Status</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Vehicle Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Number</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Problem Description</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Update Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for w in works %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td> {{w.vehicle_name}}</td>
+                    <td> {{w.category}}</td>
+                    <td> {{w.vehicle_no}}</td>
+                    <td> {{w.vehicle_model}}</td>
+                    <td> {{w.vehicle_brand}}</td>
+                    <td> {{w.problem_description}}</td>
+                    <td> {{w.location}}</td>
+                    <td>{{w.status}}</td>
+                    <td><a style="color:blue; text-decoration:none;font-size:25px;"
+                            href="{% url 'update-work-status' w.id  %}">&#9998;</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

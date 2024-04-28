@@ -1,0 +1,43 @@
+{% extends 'customertemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Pending Requests</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Vehicle Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Vehicle No.</th>
+                    <th scope="col">Vehicle Model</th>
+                    <th scope="col">Vehicle Brand</th>
+                    <th scope="col">Issues</th>
+                    <th scope="col">Mechanic</th>
+                    <th>Enquiry Date</th>
+                    <th>Status</th>   
+                    <th>Delete Enquiry</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enq in enquiries %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{enq.vehicle_name}}</td>
+                    <td>{{enq.category}}</td>
+                    <td>{{enq.vehicle_no}}</td>
+                    <td>{{enq.vehicle_model}}</td>
+                    <td>{{enq.vehicle_brand}}</td>
+                    <td>{{enq.problem_description}}</td>
+                    <td>{{enq.mechanic}}</td>
+                    <td>{{enq.date}}</td>
+                    <td>{{enq.status}}</td>
+                    <td><a style="color:blue; text-decoration:none;font-size:25px;"href="{% url 'delete-request' enq.id  %}">&#10008;</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

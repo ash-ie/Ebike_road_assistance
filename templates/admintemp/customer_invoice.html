@@ -1,0 +1,37 @@
+{% extends 'admintemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Customer Invoices</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Cost</th>
+                    <th scope="col">Bill status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in enquiry %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{i.customer}}</td>
+                    <td>{{i.cost}}</td>
+                    <td>
+                        {% if i.bill_status == 0  %}
+                        <button type="button" class="btn btn-primary">Bill Pending</button>
+                        {% elif i.bill_status == 1  %}
+                        <button type="button" class="btn btn-success">Paid</button>
+                        {% elif i.bill_status == 2  %}
+                        <button type="button" class="btn btn-danger">Choosed to Pay in Direct</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
