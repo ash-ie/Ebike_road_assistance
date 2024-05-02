@@ -1,0 +1,56 @@
+{% extends 'admintemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+<h1>Worker Report</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Vehicle No</th>
+            <th>Vehicle Name</th>
+            <th>Vehicle Model</th>
+            <th>Vehicle Brand</th>
+            <th>Problem Description</th>
+            <th>Date</th>
+            <th>Cost</th>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in worker_requests %}
+        <tr>
+            <td>{{ request.category }}</td>
+            <td>{{ request.vehicle_no }}</td>
+            <td>{{ request.vehicle_name }}</td>
+            <td>{{ request.vehicle_model }}</td>
+            <td>{{ request.vehicle_brand }}</td>
+            <td>{{ request.problem_description }}</td>
+            <td>{{ request.date }}</td>
+            <td>{{ request.cost }}</td>
+            <td>{{ request.customer.username }}</td>
+            <td>{{ request.status }}</td>
+            <td>{{ request.location }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+{% endblock %}

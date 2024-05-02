@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -120,3 +121,98 @@ def view_feedback_admin(request):
     data = Feedback.objects.all()
     context = {'data':data}
     return render(request, 'admintemp/feedback.html', context)
+
+# def generate_report(request):
+#     if request.method == 'POST':
+#         start_date = request.POST.get('start_date')
+#         end_date = request.POST.get('end_date')
+        
+#         # Convert string dates to datetime objects
+#         start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+#         end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+        
+#         # Query users based on the date range
+#         users = User.objects.filter(date_joined__range=[start_date, end_date])
+        
+#         # Get profile data for the users
+#         user_profiles = UserProfile.objects.filter(user__in=users,user__role=2)
+        
+#         # Prepare data for the report
+#         report_data = []
+#         for profile in user_profiles:
+#             report_data.append({
+#                 'username': profile.user.username,
+#                 'name': profile.name,
+#                 'start_date': profile.user.date_joined,
+#                 'end_date': profile.user.last_login
+#                 # Add more fields as needed
+#             })
+        
+#         # Render the report template with the data
+#         return render(request, 'admintemp/report_template.html', {'report_data': report_data})
+    
+#     # If the request method is not POST, render the form
+#     return render(request, 'admintemp/report_form.html')
+
+def generate_report(request):
+    if request.method == 'POST':
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        
+        # Convert string dates to datetime objects
+        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+        end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+        
+        # Query users based on the date range
+        users = User.objects.filter(date_joined__range=[start_date, end_date])
+        
+        # Get profile data for the users
+        user_profiles = UserProfile.objects.filter(user__in=users,user__role=2)
+        
+        # Get request data for the users
+        requests = Request.objects.filter(mechanic__in=users, date__range=[start_date, end_date])
+        
+        # Prepare data for the report
+        report_data = []
+        for profile in user_profiles:
+            user_requests = requests.filter(mechanic=profile.user)
+            for req in user_requests:
+                report_data.append({
+                    'name': profile.name,
+                    'category': req.category,
+                    'vehicle_no': req.vehicle_no,
+                    'vehicle_name': req.vehicle_name,
+                    'vehicle_model': req.vehicle_model,
+                    'vehicle_brand': req.vehicle_brand,
+                    'problem_description': req.problem_description,
+                    'date': req.date,
+                    'cost': req.cost,
+                    'status': req.status,
+                    'location': req.location
+                    # Add more fields as needed
+                })
+        
+        # Render the report template with the data
+        return render(request, 'admintemp/report_template.html', {'report_data': report_data})
+    
+    # If the request method is not POST, render the form
+    return render(request, 'admintemp/report_form.html')
+
+
+def worker_report(request, pk):
+    if request.method == 'POST':
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        
+        # Convert string dates to datetime objects
+        start_date = datetime.strptime(start_date, '%Y-%m-%d').date()
+        end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
+        
+        # Query requests assigned to the worker within the date range
+        worker_requests = Request.objects.filter(mechanic_id=pk, date__range=[start_date, end_date])
+        
+        # Render the worker report template with the filtered requests
+        return render(request, 'admintemp/worker_report.html', {'worker_requests': worker_requests})
+    
+    # If the request method is not POST, render the form to input start and end dates
+    return render(request, 'admintemp/worker_report_form.html', {'worker_pk': pk})

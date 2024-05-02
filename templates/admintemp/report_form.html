@@ -1,0 +1,17 @@
+{% extends 'admintemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+<h3 class="card-title">Generate Worker Report</h1>
+<form method="POST">
+    {% csrf_token %}
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required>
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date" required>
+    <button type="submit" class="btn btn-primary">Generate Report</button>
+</form>
+</div>
+</div>
+{% endblock %}

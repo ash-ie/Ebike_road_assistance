@@ -15,5 +15,7 @@ urlpatterns = [
     path('approve-request/<int:pk>/',views.approve_request,name='approve-request'),
     path('customer-invoice/',views.customer_invoice,name='customer-invoice'),
     path('feedback-admin/',views.view_feedback_admin,name='feedback-admin'),
+    path('generate_report',views.generate_report,name="generate_report"),
+     path('worker_report/<int:worker_pk>/', views.worker_report, name='worker_report'),
 
 ]

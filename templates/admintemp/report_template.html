@@ -1,0 +1,56 @@
+{% extends 'admintemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
+</head>
+<body>
+<h1>Report</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Vehicle No</th>
+            <th>Vehicle Name</th>
+            <th>Vehicle Model</th>
+            <th>Vehicle Brand</th>
+            <th>Problem Description</th>
+            <th>Date</th>
+            <th>Cost</th>
+            <th>Status</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in report_data %}
+        <tr>
+            <td>{{ data.name }}</td>
+            <td>{{ data.category }}</td>
+            <td>{{ data.vehicle_no }}</td>
+            <td>{{ data.vehicle_name }}</td>
+            <td>{{ data.vehicle_model }}</td>
+            <td>{{ data.vehicle_brand }}</td>
+            <td>{{ data.problem_description }}</td>
+            <td>{{ data.date }}</td>
+            <td>{{ data.cost }}</td>
+            <td>{{ data.status }}</td>
+            <td>{{ data.location }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+{% endblock %}
